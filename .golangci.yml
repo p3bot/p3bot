@@ -1,0 +1,35 @@
+version: "2"
+
+linters:
+  default: standard
+  enable:
+    - errorlint
+    - exhaustive
+    - gocritic
+    - misspell
+    - revive
+    - unconvert
+    - unparam
+  settings:
+    exhaustive:
+      # A default case does not count, so Code.Exit must name every code.
+      default-signifies-exhaustive: false
+    errcheck:
+      # Diagnostics on stderr have nowhere to report a failed write.
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/p3bot/p3bot
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
